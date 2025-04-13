@@ -15,13 +15,13 @@ Coded by www.creative-tim.com
 
 const reportsBarChartData = {
   chart: {
-    labels: ["Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    labels: ["Avr", "Mai", "Jun", "Jul", "Aut", "Sep", "Oct", "Nov", "Dec"],
     datasets: { label: "Sales", data: [450, 200, 100, 220, 500, 100, 400, 230, 500] },
   },
   items: [
     {
       icon: { color: "primary", component: "library_books" },
-      label: "users",
+      label: "Magasins",
       progress: { content: "36K", percentage: 60 },
     },
     {
@@ -35,7 +35,7 @@ const reportsBarChartData = {
       progress: { content: "$435", percentage: 30 },
     },
     {
-      icon: { color: "error", component: "extension" },
+      icon: { color: "error", component: "s" },
       label: "items",
       progress: { content: "43", percentage: 50 },
     },

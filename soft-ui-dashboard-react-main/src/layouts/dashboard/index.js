@@ -56,8 +56,8 @@ function Dashboard() {
               <MiniStatisticsCard
                 bgColor="white"
                 direction="right"
-                title={{ text: "today's money" }}
-                count="$53,000"
+                title={{ text: "bénéfices de ce mois" }}
+                count="5850 TND"
                 percentage={{ color: "success", text: "+55%" }}
                 icon={{ color: "primary", component: "paid" }}
               />
@@ -66,8 +66,8 @@ function Dashboard() {
               <MiniStatisticsCard
                 bgColor="white"
                 direction="right"
-                title={{ text: "today's users" }}
-                count="2,300"
+                title={{ text: "Livraisons de ce mois" }}
+                count="77"
                 percentage={{ color: "success", text: "+3%" }}
                 icon={{ color: "primary", component: "public" }}
               />
@@ -76,8 +76,8 @@ function Dashboard() {
               <MiniStatisticsCard
                 bgColor="white"
                 direction="right"
-                title={{ text: "new clients" }}
-                count="+3,462"
+                title={{ text: "Nouveaux clients" }}
+                count="+5"
                 percentage={{ color: "error", text: "-2%" }}
                 icon={{ color: "primary", component: "emoji_events" }}
               />
@@ -86,8 +86,8 @@ function Dashboard() {
               <MiniStatisticsCard
                 bgColor="white"
                 direction="right"
-                title={{ text: "sales" }}
-                count="$103,430"
+                title={{ text: "Contrats de ce mois" }}
+                count="15"
                 percentage={{ color: "success", text: "+5%" }}
                 icon={{
                   color: "primary",
@@ -99,23 +99,13 @@ function Dashboard() {
         </SoftBox>
         <SoftBox mb={3}>
           <Grid container spacing={3}>
-            <Grid item xs={12} lg={7}>
-              <BuildByDevelopers />
-            </Grid>
-            <Grid item xs={12} lg={5}>
-              <WorkWithTheRockets />
-            </Grid>
-          </Grid>
-        </SoftBox>
-        <SoftBox mb={3}>
-          <Grid container spacing={3}>
             <Grid item xs={12} lg={5}>
               <ReportsBarChart
                 color="dark"
-                title="active users"
+                title="Livraisons"
                 description={
                   <>
-                    (<strong>+23%</strong>) than last week
+                    (<strong>+23%</strong>) que l&apos;année dernière
                   </>
                 }
                 chart={chart}
@@ -124,16 +114,16 @@ function Dashboard() {
             </Grid>
             <Grid item xs={12} lg={7}>
               <GradientLineChart
-                title="Sales Overview"
+                title="Aperçu des bénéfices"
                 description={
                   <SoftBox display="flex" alignItems="center">
                     <SoftBox fontSize={size.lg} color="success" mb={0.3} mr={0.5} lineHeight={0}>
                       <Icon className="font-bold">arrow_upward</Icon>
                     </SoftBox>
                     <SoftTypography variant="button" color="text" fontWeight="medium">
-                      4% more{" "}
+                      4% plus{" "}
                       <SoftTypography variant="button" color="text" fontWeight="regular">
-                        in 2021
+                        en 2023
                       </SoftTypography>
                     </SoftTypography>
                   </SoftBox>
@@ -144,16 +134,7 @@ function Dashboard() {
             </Grid>
           </Grid>
         </SoftBox>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={6} lg={8}>
-            <Projects />
-          </Grid>
-          <Grid item xs={12} md={6} lg={4}>
-            <OrderOverview />
-          </Grid>
-        </Grid>
       </SoftBox>
-      <Footer />
     </DashboardLayout>
   );
 }
