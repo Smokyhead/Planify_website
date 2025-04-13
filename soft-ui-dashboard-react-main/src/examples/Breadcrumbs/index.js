@@ -44,7 +44,6 @@ function Breadcrumbs({ icon, title, route, light }) {
             component="span"
             variant="body2"
             color={light ? "white" : "dark"}
-            opacity={light ? 0.8 : 0.5}
             sx={{ lineHeight: 0 }}
           >
             <Icon>{icon}</Icon>
@@ -58,7 +57,6 @@ function Breadcrumbs({ icon, title, route, light }) {
               fontWeight="regular"
               textTransform="capitalize"
               color={light ? "white" : "dark"}
-              opacity={light ? 0.8 : 0.5}
               sx={{ lineHeight: 0 }}
             >
               {el}
@@ -75,15 +73,6 @@ function Breadcrumbs({ icon, title, route, light }) {
           {title.replace("-", " ")}
         </SoftTypography>
       </MuiBreadcrumbs>
-      <SoftTypography
-        fontWeight="bold"
-        textTransform="capitalize"
-        variant="h6"
-        color={light ? "white" : "dark"}
-        noWrap
-      >
-        {title.replace("-", " ")}
-      </SoftTypography>
     </SoftBox>
   );
 }

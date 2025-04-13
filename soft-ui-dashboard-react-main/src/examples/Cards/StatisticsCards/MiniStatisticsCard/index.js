@@ -30,7 +30,7 @@ function MiniStatisticsCard({ bgColor, title, count, percentage, icon, direction
     <Card>
       <SoftBox bgColor={bgColor} variant="gradient">
         <SoftBox p={2}>
-          <Grid container alignItems="center">
+          <Grid container alignItems="stretch" justifyContent="space-between">
             {direction === "left" ? (
               <Grid item>
                 <SoftBox
@@ -51,22 +51,17 @@ function MiniStatisticsCard({ bgColor, title, count, percentage, icon, direction
                 </SoftBox>
               </Grid>
             ) : null}
-            <Grid item xs={8}>
+            <Grid item xs={8} size="grow">
               <SoftBox ml={direction === "left" ? 2 : 0} lineHeight={1}>
                 <SoftTypography
                   variant="button"
-                  color={bgColor === "white" ? "text" : "white"}
-                  opacity={bgColor === "white" ? 1 : 0.7}
+                  color="info"
                   textTransform="capitalize"
                   fontWeight={title.fontWeight}
                 >
                   {title.text}
                 </SoftTypography>
-                <SoftTypography
-                  variant="h5"
-                  fontWeight="bold"
-                  color={bgColor === "white" ? "dark" : "white"}
-                >
+                <SoftTypography variant="h5" fontWeight="bold" color="dark">
                   {count}{" "}
                   <SoftTypography variant="button" color={percentage.color} fontWeight="bold">
                     {percentage.text}
@@ -75,14 +70,13 @@ function MiniStatisticsCard({ bgColor, title, count, percentage, icon, direction
               </SoftBox>
             </Grid>
             {direction === "right" ? (
-              <Grid item xs={4}>
+              <Grid item size="auto">
                 <SoftBox
                   variant="gradient"
                   bgColor={bgColor === "white" ? icon.color : "white"}
                   color={bgColor === "white" ? "white" : "dark"}
                   width="3rem"
                   height="3rem"
-                  marginLeft="auto"
                   borderRadius="md"
                   display="flex"
                   justifyContent="center"

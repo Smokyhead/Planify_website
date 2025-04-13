@@ -34,9 +34,6 @@ import CoverLayout from "layouts/authentication/components/CoverLayout";
 import curved9 from "assets/images/curved-images/curved-6.jpg";
 
 function SignIn() {
-  const [rememberMe, setRememberMe] = useState(true);
-
-  const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
   return (
     <CoverLayout
@@ -60,17 +57,6 @@ function SignIn() {
             </SoftTypography>
           </SoftBox>
           <SoftInput type="password" placeholder="Password" />
-        </SoftBox>
-        <SoftBox display="flex" alignItems="center">
-          <Switch checked={rememberMe} onChange={handleSetRememberMe} />
-          <SoftTypography
-            variant="button"
-            fontWeight="regular"
-            onClick={handleSetRememberMe}
-            sx={{ cursor: "pointer", userSelect: "none" }}
-          >
-            &nbsp;&nbsp;Remember me
-          </SoftTypography>
         </SoftBox>
         <SoftBox mt={4} mb={1}>
           <SoftButton variant="gradient" color="info" fullWidth>

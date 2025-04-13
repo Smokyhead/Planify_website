@@ -54,35 +54,43 @@ function Dashboard() {
           <Grid container spacing={3}>
             <Grid item xs={12} sm={6} xl={3}>
               <MiniStatisticsCard
+                bgColor="white"
+                direction="right"
                 title={{ text: "today's money" }}
                 count="$53,000"
                 percentage={{ color: "success", text: "+55%" }}
-                icon={{ color: "info", component: "paid" }}
+                icon={{ color: "primary", component: "paid" }}
               />
             </Grid>
             <Grid item xs={12} sm={6} xl={3}>
               <MiniStatisticsCard
+                bgColor="white"
+                direction="right"
                 title={{ text: "today's users" }}
                 count="2,300"
                 percentage={{ color: "success", text: "+3%" }}
-                icon={{ color: "info", component: "public" }}
+                icon={{ color: "primary", component: "public" }}
               />
             </Grid>
             <Grid item xs={12} sm={6} xl={3}>
               <MiniStatisticsCard
+                bgColor="white"
+                direction="right"
                 title={{ text: "new clients" }}
                 count="+3,462"
                 percentage={{ color: "error", text: "-2%" }}
-                icon={{ color: "info", component: "emoji_events" }}
+                icon={{ color: "primary", component: "emoji_events" }}
               />
             </Grid>
             <Grid item xs={12} sm={6} xl={3}>
               <MiniStatisticsCard
+                bgColor="white"
+                direction="right"
                 title={{ text: "sales" }}
                 count="$103,430"
                 percentage={{ color: "success", text: "+5%" }}
                 icon={{
-                  color: "info",
+                  color: "primary",
                   component: "shopping_cart",
                 }}
               />
@@ -103,6 +111,7 @@ function Dashboard() {
           <Grid container spacing={3}>
             <Grid item xs={12} lg={5}>
               <ReportsBarChart
+                color="dark"
                 title="active users"
                 description={
                   <>
