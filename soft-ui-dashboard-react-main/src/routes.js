@@ -39,19 +39,19 @@ Coded by www.creative-tim.com
 import Dashboard from "layouts/dashboard";
 import Tables from "layouts/tables";
 import Profile from "layouts/profile";
+import SignIn from "layouts/authentication/sign-in";
 
 // Soft UI Dashboard React icons
 import Shop from "examples/Icons/Shop";
 import Office from "examples/Icons/Office";
 import CustomerSupport from "examples/Icons/CustomerSupport";
 import Document from "examples/Icons/Document";
-import SignIn from "layouts/authentication/sign-in";
 
 const routes = [
   {
     type: "collapse",
-    name: "Dashboard",
-    key: "dashboard",
+    name: "Tableau de bord",
+    key: "tableau-de-bord",
     route: "/dashboard",
     icon: <Shop size="12px" />,
     component: <Dashboard />,

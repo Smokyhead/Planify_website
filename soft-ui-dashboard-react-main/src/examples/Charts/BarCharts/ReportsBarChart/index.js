@@ -39,7 +39,7 @@ function ReportsBarChart({ color, title, description, chart, items }) {
   const { data, options } = configs(chart.labels || [], chart.datasets || {});
 
   const renderItems = items.map(({ icon, label, progress }) => (
-    <Grid item xs={6} sm={3} key={label}>
+    <Grid item key={label} size="grow" >
       <BarReportsChartItem
         color={color}
         icon={{ color: icon.color, component: icon.component }}
@@ -78,7 +78,7 @@ function ReportsBarChart({ color, title, description, chart, items }) {
             </SoftTypography>
           </SoftBox>
           <SoftBox py={1} px={0.5}>
-            <Grid container spacing={2}>
+            <Grid container size="grow" spacing={5} alignItems="sretch" justifyContent="space-around">
               {renderItems}
             </Grid>
           </SoftBox>

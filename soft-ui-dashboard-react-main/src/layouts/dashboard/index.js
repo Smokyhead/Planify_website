@@ -102,7 +102,7 @@ function Dashboard() {
             <Grid item xs={12} lg={5}>
               <ReportsBarChart
                 color="dark"
-                title="Livraisons"
+                title="Livraisons annuelles"
                 description={
                   <>
                     (<strong>+23%</strong>) que l&apos;année dernière
