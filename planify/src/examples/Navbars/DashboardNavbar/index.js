@@ -150,7 +150,11 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 size="small"
                 color="inherit"
                 sx={navbarIconButton}
-                onClick={handleConfiguratorOpen}
+                onClick={() => {
+                  navigate("/profile");
+                  // localStorage.removeItem("token");
+                  // localStorage.removeItem("user");
+                }}
               >
                 <Icon>person</Icon>
               </IconButton>
