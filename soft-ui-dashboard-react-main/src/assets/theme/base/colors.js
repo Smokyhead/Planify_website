@@ -1,6 +1,6 @@
 const colors = {
   background: {
-    default: "#f8f9fa",
+    default: "#E4E7F1",
   },
 
   text: {

@@ -64,7 +64,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
           sx={{ textDecoration: "none" }}
         >
           <SidenavCollapse
-            color={color}
+            color="dark"
             name={name}
             icon={icon}
             active={key === collapseName}
@@ -74,7 +74,7 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
       ) : (
         <NavLink to={route} key={key}>
           <SidenavCollapse
-            color={color}
+            color="dark"
             key={key}
             name={name}
             icon={icon}
@@ -133,13 +133,12 @@ function Sidenav({ color, brand, brandName, routes, ...rest }) {
 
 // Setting default values for the props of Sidenav
 Sidenav.defaultProps = {
-  color: "info",
-  brand: "",
+  color: "dark",
 };
 
 // Typechecking props for the Sidenav
 Sidenav.propTypes = {
-  color: PropTypes.oneOf(["primary", "secondary", "info", "success", "warning", "error", "dark"]),
+  color: "dark",
   brand: PropTypes.string,
   brandName: PropTypes.string.isRequired,
   routes: PropTypes.arrayOf(PropTypes.object).isRequired,

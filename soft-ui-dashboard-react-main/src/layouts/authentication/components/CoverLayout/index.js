@@ -6,21 +6,19 @@ import Grid from "@mui/material/Grid";
 
 import SoftBox from "components/SoftBox";
 import SoftTypography from "components/SoftTypography";
+import Card from "@mui/material/Card";
 
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import PageLayout from "examples/LayoutContainers/PageLayout";
 
-// Authentication layout components
-import Footer from "layouts/authentication/components/Footer";
-
 function CoverLayout({ color, header, title, description, image, top, children }) {
   return (
-    <PageLayout background="white">
+    <PageLayout>
       <DefaultNavbar
         action={{
           type: "external",
           route: "",
-          label: "free download",
+          label: "Se connecter",
           color: "dark",
         }}
       />
@@ -33,52 +31,29 @@ function CoverLayout({ color, header, title, description, image, top, children }
         }}
       >
         <Grid item xs={11} sm={8} md={5} xl={3} mt={20}>
-          <SoftBox mt={top}>
-            <SoftBox pt={3} px={3}>
-              {!header ? (
-                <>
-                  <SoftBox mb={1}>
-                    <SoftTypography variant="h3" fontWeight="bold" color={color} textGradient>
-                      {title}
+          <Card p={2} mt={top}>
+            <SoftBox >
+              <SoftBox pt={3} px={3}>
+                {!header ? (
+                  <>
+                    <SoftBox mb={1}>
+                      <SoftTypography variant="h3" fontWeight="bold" color={color} textGradient>
+                        {title}
+                      </SoftTypography>
+                    </SoftBox>
+                    <SoftTypography variant="body2" fontWeight="regular" color="text">
+                      {description}
                     </SoftTypography>
-                  </SoftBox>
-                  <SoftTypography variant="body2" fontWeight="regular" color="text">
-                    {description}
-                  </SoftTypography>
-                </>
-              ) : (
-                header
-              )}
+                  </>
+                ) : (
+                  header
+                )}
+              </SoftBox>
+              <SoftBox p={3}>{children}</SoftBox>
             </SoftBox>
-            <SoftBox p={3}>{children}</SoftBox>
-          </SoftBox>
-        </Grid>
-        <Grid item xs={12} md={5}>
-          <SoftBox
-            height="100%"
-            display={{ xs: "none", md: "block" }}
-            position="relative"
-            right={{ md: "-12rem", xl: "-16rem" }}
-            mr={-16}
-            sx={{
-              transform: "skewX(-10deg)",
-              overflow: "hidden",
-              borderBottomLeftRadius: ({ borders: { borderRadius } }) => borderRadius.lg,
-            }}
-          >
-            <SoftBox
-              ml={-8}
-              height="100%"
-              sx={{
-                backgroundImage: `url(${image})`,
-                backgroundSize: "cover",
-                transform: "skewX(10deg)",
-              }}
-            />
-          </SoftBox>
+          </Card>
         </Grid>
       </Grid>
-      <Footer />
     </PageLayout>
   );
 }

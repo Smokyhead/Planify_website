@@ -8,7 +8,7 @@ function collapseItem(theme, ownerState) {
   const { pxToRem } = functions;
 
   return {
-    background: active && transparentSidenav ? white.main : transparent.main,
+    background: active ? "#F9EBDC" : transparent.main,
     color: active ? dark.main : text.main,
     display: "flex",
     alignItems: "center",

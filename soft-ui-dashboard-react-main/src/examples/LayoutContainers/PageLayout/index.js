@@ -23,18 +23,13 @@ function PageLayout({ background, children }) {
       width="100vw"
       height="100%"
       minHeight="100vh"
-      bgColor={background}
+      bgColor= "linear-gradient(180deg,rgb(207, 217, 255),rgb(255, 237, 211))"
       sx={{ overflowX: "hidden" }}
     >
       {children}
     </SoftBox>
   );
 }
-
-// Setting default values for the props for PageLayout
-PageLayout.defaultProps = {
-  background: "default",
-};
 
 // Typechecking props for the PageLayout
 PageLayout.propTypes = {
