@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import SoftButtonRoot from "components/SoftButton/SoftButtonRoot";
 
 const SoftButton = forwardRef(
-  ({ color, variant, size, circular, iconOnly, children, ...rest }, ref) => (
+  ({ onClick, color, variant, size, circular, iconOnly, children, ...rest }, ref) => (
     <SoftButtonRoot
       {...rest}
       ref={ref}
@@ -13,6 +13,7 @@ const SoftButton = forwardRef(
       variant={variant === "gradient" ? "contained" : variant}
       size={size}
       ownerState={{ color, variant, size, circular, iconOnly }}
+      onClick={onClick}
     >
       {children}
     </SoftButtonRoot>
@@ -46,6 +47,7 @@ SoftButton.propTypes = {
   circular: PropTypes.bool,
   iconOnly: PropTypes.bool,
   children: PropTypes.node.isRequired,
+  onClick: PropTypes.func,
 };
 
 export default SoftButton;
