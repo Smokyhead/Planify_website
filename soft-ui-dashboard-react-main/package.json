@@ -1,16 +1,7 @@
 {
-  "name": "soft-ui-dashboard-react",
+  "name": "planify",
   "version": "4.0.1",
-  "author": "Creative Tim",
-  "license": "SEE LICENSE IN <https://www.creative-tim.com/license>",
-  "description": "ReactJS version of Soft UI Dashboard by Creative Tim",
-  "bugs": {
-    "url": "https://github.com/creativetimofficial/soft-ui-dashboard-react/issues"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/creativetimofficial/soft-ui-dashboard-react.git"
-  },
+  "description": "Planify",
   "dependencies": {
     "@emotion/cache": "11.11.0",
     "@emotion/react": "11.11.0",

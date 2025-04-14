@@ -1,4 +1,4 @@
-name: soft-ui-dashboard-react
+name: planify
 region: us-east-1
 frontend:
   # Specifies the path of your code.
