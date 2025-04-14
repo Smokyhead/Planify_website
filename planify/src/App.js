@@ -11,6 +11,7 @@ import SoftBox from "components/SoftBox";
 import Sidenav from "examples/Sidenav";
 import Configurator from "examples/Configurator";
 import theme from "assets/theme";
+import dashboardRoutes from "dashboardRoutes";
 import routes from "routes";
 import { useSoftUIController, setMiniSidenav, setOpenConfigurator } from "context";
 
@@ -99,7 +100,7 @@ export default function App() {
             color={sidenavColor}
             brand={brand}
             brandName="Planify"
-            routes={routes}
+            routes={dashboardRoutes}
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
           />
