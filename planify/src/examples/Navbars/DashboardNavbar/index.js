@@ -1,10 +1,11 @@
 import { useState, useEffect } from "react";
 
 // react-router components
-import { useLocation, Link } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 
 // prop-types is a library for typechecking of props.
 import PropTypes from "prop-types";
+import { useNavigate } from "react-router-dom";
 
 // @material-ui core components
 import AppBar from "@mui/material/AppBar";
@@ -39,6 +40,7 @@ import team2 from "assets/images/team-2.jpg";
 import logoSpotify from "assets/images/small-logos/logo-spotify.svg";
 
 function DashboardNavbar({ absolute, light, isMini }) {
+  const navigate = useNavigate();
   const [navbarType, setNavbarType] = useState();
   const [controller, dispatch] = useSoftUIController();
   const { miniSidenav, transparentNavbar, fixedNavbar, openConfigurator } = controller;
@@ -150,7 +152,7 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 sx={navbarIconButton}
                 onClick={handleConfiguratorOpen}
               >
-                <Icon>settings</Icon>
+                <Icon>person</Icon>
               </IconButton>
               <IconButton
                 size="small"
@@ -162,6 +164,21 @@ function DashboardNavbar({ absolute, light, isMini }) {
                 onClick={handleOpenMenu}
               >
                 <Icon className={light ? "text-white" : "text-dark"}>notifications</Icon>
+              </IconButton>
+              <IconButton
+                size="small"
+                color="inherit"
+                sx={navbarIconButton}
+                aria-controls="sign-out"
+                aria-haspopup="true"
+                variant="contained"
+                onClick={() => {
+                  navigate("/authentication/sign-in");
+                  // localStorage.removeItem("token");
+                  // localStorage.removeItem("user");
+                }}
+              >
+                <Icon className={light ? "text-white" : "text-dark"}>logout</Icon>
               </IconButton>
               {renderMenu()}
             </SoftBox>

@@ -28,7 +28,7 @@ function DefaultNavbarMobile({ open, close }) {
       MenuListProps={{ style: { width: `calc(${width}px - 4rem)` } }}
     >
       <SoftBox px={0.5}>
-        <DefaultNavbarLink icon="donut_large" name="tableau-de-bord" route="/tableau-de-bord" />
+        <DefaultNavbarLink icon="home" name="home" route="/*" />
       </SoftBox>
     </Menu>
   );

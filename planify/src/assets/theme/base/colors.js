@@ -183,7 +183,7 @@ const colors = {
     primary: {
       main: "#7928ca",
       state: "#d6006c",
-      border: "#efb6e2",
+      border: "#101D56",
     },
 
     secondary: {
@@ -195,7 +195,7 @@ const colors = {
     info: {
       main: "#2152ff",
       state: "#02c6f3",
-      border: "#b9ecf8",
+      border: "#101D56",
     },
 
     success: {
@@ -272,7 +272,7 @@ const colors = {
   },
 
   inputColors: {
-    borderColor: { main: "#d2d6da", focus: "#35d1f5" },
+    borderColor: { main: "#101D56", focus: "#101D56" },
     boxShadow: "#81e3f9",
     error: "#fd5c70",
     success: "#66d432",

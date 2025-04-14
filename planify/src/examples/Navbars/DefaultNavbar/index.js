@@ -19,7 +19,11 @@ import DefaultNavbarMobile from "examples/Navbars/DefaultNavbar/DefaultNavbarMob
 import breakpoints from "assets/theme/base/breakpoints";
 import logo from "assets/LogoHorizental.png";
 
+import { useLocation } from "react-router-dom";
+
 function DefaultNavbar({ transparent, light, action }) {
+  const location = useLocation();
+  const isLoginPage = location.pathname === "/authentication/sign-in";
   const [mobileNavbar, setMobileNavbar] = useState(false);
   const [mobileView, setMobileView] = useState(false);
 
@@ -77,12 +81,7 @@ function DefaultNavbar({ transparent, light, action }) {
           <img src={logo} alt="Logo" width={100} />
         </SoftBox>
         <SoftBox color="inherit" display={{ xs: "none", lg: "flex" }} m={0} p={0}>
-          <DefaultNavbarLink
-            icon="donut_large"
-            name="tableau de bord"
-            route="/tableau-de-bord"
-            light={light}
-          />
+          <DefaultNavbarLink icon="home" name="home" route="/*" light={light} />
         </SoftBox>
         {action &&
           (action.type === "internal" ? (
@@ -98,7 +97,7 @@ function DefaultNavbar({ transparent, light, action }) {
                 {action.label}
               </SoftButton>
             </SoftBox>
-          ) : (
+          ) : !isLoginPage ? (
             <SoftBox display={{ xs: "none", lg: "inline-block" }}>
               <SoftButton
                 component="a"
@@ -113,7 +112,7 @@ function DefaultNavbar({ transparent, light, action }) {
                 {action.label}
               </SoftButton>
             </SoftBox>
-          ))}
+          ) : null)}
         <SoftBox
           display={{ xs: "inline-block", lg: "none" }}
           lineHeight={0}

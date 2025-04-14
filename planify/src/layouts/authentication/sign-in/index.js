@@ -6,8 +6,10 @@ import TextField from "@mui/material/TextField";
 import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
 import SoftButton from "components/SoftButton";
-import DefaultNavbarLink from "examples/Navbars/DefaultNavbar/DefaultNavbarLink";
+import SoftTypography from "components/SoftTypography";
+import SoftInput from "components/SoftInput";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // Authentication layout components
 import CoverLayout from "layouts/authentication/components/CoverLayout";
@@ -121,7 +123,8 @@ function SignIn() {
                 Email
               </FormLabel>
             </SoftBox>
-            <TextField
+            <SoftInput
+              fullWidth
               error={emailError}
               helperText={emailErrorMessage}
               id="email"
@@ -135,14 +138,14 @@ function SignIn() {
               color={emailError ? "error" : "primary"}
             />
           </FormControl>
-
           <FormControl fullWidth>
-            <SoftBox mt={2}>
+            <SoftBox mt={1}>
               <FormLabel htmlFor="password" sx={{ fontSize: "1rem", fontWeight: "bold" }}>
                 Mot de passe
               </FormLabel>
             </SoftBox>
-            <TextField
+            <SoftInput
+              fullWidth
               error={passwordError}
               helperText={passwordErrorMessage}
               name="password"
@@ -156,15 +159,29 @@ function SignIn() {
             />
           </FormControl>
 
-          <SoftBox mt={4} mb={1}>
+          <SoftBox mt={2} mb={1}>
             <SoftButton type="submit" variant="gradient" color="primary" fullWidth>
               Se connecter
             </SoftButton>
           </SoftBox>
         </form>
-
-        <SoftBox>
-          <DefaultNavbarLink name="Mot de passe oublié ?" route="/*" />
+        <SoftBox
+          component={Link}
+          //to={route}
+          mt={3}
+          display="flex"
+          alignItems="center"
+          sx={{ cursor: "pointer", userSelect: "none" }}
+        >
+          <SoftTypography
+            variant="button"
+            fontWeight="regular"
+            color={"dark"}
+            textTransform="capitalize"
+            sx={{ width: "100%", lineHeight: 0 }}
+          >
+            Mot de passe oublié ?
+          </SoftTypography>
         </SoftBox>
       </SoftBox>
     </CoverLayout>
