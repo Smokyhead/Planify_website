@@ -31,7 +31,7 @@ function Dashboard() {
                 bgColor="white"
                 direction="right"
                 title={{ text: "bénéfices de ce mois" }}
-                count="5850 TND"
+                count="5,850 DT"
                 percentage={{ color: "success", text: "+55%" }}
                 icon={{ color: "primary", component: "paid" }}
               />
