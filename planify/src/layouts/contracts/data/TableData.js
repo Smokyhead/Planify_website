@@ -1,39 +1,61 @@
 import SoftTypography from "components/SoftTypography";
+import SoftBox from "components/SoftBox";
+import SoftBadge from "components/SoftBadge";
 
-const warehousesTableData = {
+const contractsTableData = {
   columns: [
-    { name: "Code", align: "center" },
-    { name: "Localisation", align: "left" },
-    { name: "Capacité KM", align: "left" },
-    { name: "Horaire", align: "left" },
+    { name: "Id", align: "center" },
+    { name: "Type", align: "left" },
+    { name: "Magasin", align: "left" },
+    { name: "Fréquence", align: "left" },
+    { name: "Status", align: "left" },
+    { name: "Commentaire", align: "left" },
     { name: "Action", align: "center" },
   ],
 
   rows: [
     {
-      Code: (
+      Id: (
         <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-          654321
+          1
         </SoftTypography>
       ),
-      Localisation: (
-        <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-          Sfax (34.7406° N, 10.7603° E)
+      Type: (
+        <SoftTypography
+          textTransform="uppercase"
+          variant="caption"
+          color="secondary"
+          fontWeight="medium"
+        >
+          comeau
         </SoftTypography>
       ),
-      "Capacité KM": (
+      Magasin: (
+        <SoftBox display="flex" flexDirection="column">
+          <SoftTypography variant="caption" fontWeight="medium" color="text">
+            Magasin 1
+          </SoftTypography>
+          <SoftTypography variant="caption" color="secondary">
+            ID: 53
+          </SoftTypography>
+        </SoftBox>
+      ),
+      Fréquence: (
         <SoftTypography
           textTransform="capitalize"
           variant="caption"
           color="secondary"
           fontWeight="medium"
         >
-          600 Km/jour
+          2/semaine
         </SoftTypography>
       ),
-      Horaire: (
+      Status: (
+        <SoftBadge variant="gradient" badgeContent="Actif" color="success" size="xs" container />
+      ),
+      Commentaire: (
         <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-          08:00 - 12:00, 14:00 - 18:00
+          -
         </SoftTypography>
       ),
       Action: (
@@ -49,29 +71,48 @@ const warehousesTableData = {
       ),
     },
     {
-      Code: (
+      Id: (
         <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-          987125
+          2
         </SoftTypography>
       ),
-      Localisation: (
+      Type: (
         <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-          Bizerte (37.2744° N, 9.8739° E)
+          comprod1
         </SoftTypography>
       ),
-      "Capacité KM": (
+      Magasin: (
+        <SoftBox display="flex" flexDirection="column">
+          <SoftTypography variant="caption" fontWeight="medium" color="text">
+            Magasin 2
+          </SoftTypography>
+          <SoftTypography variant="caption" color="secondary">
+            ID: 12
+          </SoftTypography>
+        </SoftBox>
+      ),
+      Fréquence: (
         <SoftTypography
           textTransform="capitalize"
           variant="caption"
           color="secondary"
           fontWeight="medium"
         >
-          1000 Km/jour
+          2/mois
         </SoftTypography>
       ),
-      Horaire: (
+      Status: (
+        <SoftBadge
+          variant="gradient"
+          badgeContent="Non actif"
+          color="secondary"
+          size="xs"
+          container
+        />
+      ),
+      Commentaire: (
         <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-          07:00 - 13:00, 14:00 - 18:00
+          -
         </SoftTypography>
       ),
       Action: (
@@ -87,29 +128,42 @@ const warehousesTableData = {
       ),
     },
     {
-      Code: (
+      Id: (
         <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-          657159
+          3
         </SoftTypography>
       ),
-      Localisation: (
+      Type: (
         <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-          Gabès (33.8815° N, 10.0982° E)
+          comprod3
         </SoftTypography>
       ),
-      "Capacité KM": (
+      Magasin: (
+        <SoftBox display="flex" flexDirection="column">
+          <SoftTypography variant="caption" fontWeight="medium" color="text">
+            Magasin 3
+          </SoftTypography>
+          <SoftTypography variant="caption" color="secondary">
+            ID: 5
+          </SoftTypography>
+        </SoftBox>
+      ),
+      Fréquence: (
         <SoftTypography
           textTransform="capitalize"
           variant="caption"
           color="secondary"
           fontWeight="medium"
         >
-          350 Km/jour
+          1/mois
         </SoftTypography>
       ),
-      Horaire: (
+      Status: (
+        <SoftBadge variant="gradient" badgeContent="Actif" color="success" size="xs" container />
+      ),
+      Commentaire: (
         <SoftTypography variant="caption" color="secondary" fontWeight="medium">
-          08:00 - 12:00, 14:00 - 18:00
+          -
         </SoftTypography>
       ),
       Action: (
@@ -127,4 +181,4 @@ const warehousesTableData = {
   ],
 };
 
-export default warehousesTableData;
+export default contractsTableData;

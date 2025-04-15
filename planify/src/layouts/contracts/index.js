@@ -9,10 +9,10 @@ import SoftTypography from "components/SoftTypography";
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Table from "examples/Tables/Table";
-import warehousesTableData from "layouts/warehouses/data/TableData";
+import contractsTableData from "layouts/contracts/data/TableData";
 
-function MyWarehouses() {
-  const { columns, rows } = warehousesTableData;
+function MyContracts() {
+  const { columns, rows } = contractsTableData;
   return (
     <DashboardLayout>
       <DashboardNavbar />
@@ -20,7 +20,7 @@ function MyWarehouses() {
         <Card>
           <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
             <SoftTypography textTransform={capitalize} variant="h6">
-              Ajouter un entrepot
+              Ajouter un contrat
             </SoftTypography>
             <SoftBox display="flex" alignItems="center">
               <SoftButton
@@ -35,7 +35,7 @@ function MyWarehouses() {
       <SoftBox>
         <Card>
           <SoftBox display="flex" justifyContent="space-between" alignItems="center" p={3}>
-            <SoftTypography variant="h6">Mes entrepots</SoftTypography>
+            <SoftTypography variant="h6">Mes contracts</SoftTypography>
           </SoftBox>
           <SoftBox mb={3}
             sx={{
@@ -55,4 +55,4 @@ function MyWarehouses() {
   );
 }
 
-export default MyWarehouses;
+export default MyContracts;

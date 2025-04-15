@@ -1,9 +1,10 @@
-import Dashboard from "layouts/dashboard";
-
 import Shop from "examples/Icons/Shop";
+import Office from "examples/Icons/Office";
+import Document from "examples/Icons/Document";
+
 import MyWarehouses from "layouts/warehouses";
-import CustomerSupport from "examples/Icons/CustomerSupport";
-import Profile from "layouts/profile";
+import Dashboard from "layouts/dashboard";
+import MyContracts from "layouts/contracts";
 
 const dashboardRoutes = [
   {
@@ -20,8 +21,17 @@ const dashboardRoutes = [
     name: "Mes entrepots",
     key: "mes-entrepots",
     route: "/mes-entrepots",
-    icon: <CustomerSupport size="12px" />,
+    icon: <Office size="12px" />,
     component: <MyWarehouses />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "Mes contrats",
+    key: "mes-contrats",
+    route: "/mes-contrats",
+    icon: <Document size="12px" />,
+    component: <MyContracts />,
     noCollapse: true,
   },
 ];
