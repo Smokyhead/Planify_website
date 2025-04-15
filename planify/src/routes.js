@@ -1,6 +1,7 @@
 import SignIn from "layouts/authentication/sign-in";
 import MyContracts from "layouts/contracts";
 import Dashboard from "layouts/dashboard";
+import Planning from "layouts/planning";
 import Profile from "layouts/profile";
 import MyWarehouses from "layouts/warehouses";
 
@@ -34,6 +35,12 @@ const routes = [
     key: "mes-contrats",
     route: "/mes-contrats",
     component: <MyContracts />,
+  },
+  {
+    name: "Planning",
+    key: "planning",
+    route: "/planning",
+    component: <Planning />,
   },
 ];
 

@@ -5,6 +5,8 @@ import Document from "examples/Icons/Document";
 import MyWarehouses from "layouts/warehouses";
 import Dashboard from "layouts/dashboard";
 import MyContracts from "layouts/contracts";
+import Settings from "examples/Icons/Settings";
+import Planning from "layouts/planning";
 
 const dashboardRoutes = [
   {
@@ -32,6 +34,15 @@ const dashboardRoutes = [
     route: "/mes-contrats",
     icon: <Document size="12px" />,
     component: <MyContracts />,
+    noCollapse: true,
+  },
+  {
+    type: "collapse",
+    name: "Planning",
+    key: "planning",
+    route: "/planning",
+    icon: <Settings size="12px" />,
+    component: <Planning />,
     noCollapse: true,
   },
 ];
