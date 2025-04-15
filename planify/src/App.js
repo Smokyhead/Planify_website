@@ -9,7 +9,6 @@ import CssBaseline from "@mui/material/CssBaseline";
 import Icon from "@mui/material/Icon";
 import SoftBox from "components/SoftBox";
 import Sidenav from "examples/Sidenav";
-import Configurator from "examples/Configurator";
 import theme from "assets/theme";
 import dashboardRoutes from "dashboardRoutes";
 import routes from "routes";
@@ -67,34 +66,14 @@ export default function App() {
       return null;
     });
 
-  const configsButton = (
-    <SoftBox
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      width="3.5rem"
-      height="3.5rem"
-      bgColor="white"
-      shadow="sm"
-      borderRadius="50%"
-      position="fixed"
-      right="2rem"
-      bottom="2rem"
-      zIndex={99}
-      color="dark"
-      sx={{ cursor: "pointer" }}
-      onClick={handleConfiguratorOpen}
-    >
-      <Icon fontSize="default" color="inherit">
-        settings
-      </Icon>
-    </SoftBox>
-  );
+  const getRouteKeys = () => {
+    return dashboardRoutes.map((route) => route.key);
+  };
 
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      {layout === "tableau-de-bord" && (
+      {getRouteKeys().includes(layout) && (
         <>
           <Sidenav
             color={sidenavColor}
@@ -104,8 +83,6 @@ export default function App() {
             onMouseEnter={handleOnMouseEnter}
             onMouseLeave={handleOnMouseLeave}
           />
-          <Configurator />
-          {configsButton}
         </>
       )}
       <Routes>

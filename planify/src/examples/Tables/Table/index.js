@@ -50,13 +50,12 @@ function Table({ columns, rows }) {
         pl={align === "left" ? pl : 3}
         pr={align === "right" ? pr : 3}
         textAlign={align}
-        fontSize={size.xxs}
+        fontSize={size.sm}
         fontWeight={fontWeightBold}
-        color="secondary"
-        opacity={0.7}
+        color="primary"
         borderBottom={`${borderWidth[1]} solid ${light.main}`}
       >
-        {name.toUpperCase()}
+        {name}
       </SoftBox>
     );
   });
@@ -114,7 +113,7 @@ function Table({ columns, rows }) {
 
   return useMemo(
     () => (
-      <TableContainer>
+      <TableContainer color="transparent" sx={{ boxShadow: "none" }}>
         <MuiTable>
           <SoftBox component="thead">
             <TableRow>{renderColumns}</TableRow>

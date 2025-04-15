@@ -53,7 +53,7 @@ function SignIn() {
           navigate("/tableau-de-bord", { state: { user: result.user } });
         } else {
           console.error("Login failed:", await response.text());
-          // show error
+          alert("Echec de la connexion. Veuillez vérifier vos identifiants.");
         }
 
         setIsLoading(false);
@@ -125,7 +125,6 @@ function SignIn() {
             <SoftInput
               fullWidth
               error={emailError}
-              helperText={emailErrorMessage}
               id="email"
               type="email"
               name="email"
@@ -146,7 +145,6 @@ function SignIn() {
             <SoftInput
               fullWidth
               error={passwordError}
-              helperText={passwordErrorMessage}
               name="password"
               placeholder="••••••"
               type="password"

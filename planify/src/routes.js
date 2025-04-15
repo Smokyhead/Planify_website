@@ -1,6 +1,7 @@
 import SignIn from "layouts/authentication/sign-in";
 import Dashboard from "layouts/dashboard";
 import Profile from "layouts/profile";
+import MyWarehouses from "layouts/warehouses";
 
 const routes = [
   {
@@ -20,6 +21,12 @@ const routes = [
     key: "profile",
     route: "/profile",
     component: <Profile />,
+  },
+  {
+    name: "Mes entrepots",
+    key: "mes-entrepots",
+    route: "/mes-entrepots",
+    component: <MyWarehouses />,
   },
 ];
 
