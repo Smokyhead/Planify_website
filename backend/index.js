@@ -48,3 +48,41 @@ app.post("/api/login", (req, res) => {
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
 });
+
+// **********warehouse********** //
+
+app.post("/api/add-warehouse", (req, res) => {
+  const { code, location, capacity_km, schedule } = req.body;
+
+  if (!code || !location || !capacity_km || !schedule) {
+    return res.status(400).json({ error: "Missing required fields" });
+  }
+
+  const query = `
+    INSERT INTO warehouses (code, location, capacity_km, schedule)
+    VALUES (?, ?, ?, ?)
+  `;
+
+  db.query(query, [code, location, capacity_km, schedule], (err, result) => {
+    if (err) {
+      console.error("Database insert error:", err);
+      return res.status(500).json({ error: "Failed to add warehouse" });
+    }
+
+    res.status(201).json({
+      message: "Warehouse added successfully",
+      id: result.insertId,
+    });
+  });
+});
+
+app.get("/api/get-warehouses", (req, res) => {
+  const query = "SELECT * FROM warehouses";
+  db.query(query, (err, results) => {
+    if (err) {
+      console.error("Error fetching warehouses:", err);
+      return res.status(500).json({ error: "Failed to fetch warehouses" });
+    }
+    res.json(results);
+  });
+});
