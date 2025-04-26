@@ -56,6 +56,11 @@ function MyWarehouses() {
     location: "",
     capacity_km: "",
     schedule: "",
+    shifts: 1, // default 1 shift
+    start1: "",
+    end1: "",
+    start2: "",
+    end2: "",
   });
 
   const handleInputChange = (e) => {
@@ -74,7 +79,12 @@ function MyWarehouses() {
       await fetch("http://localhost:3001/api/add-warehouse", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          code: formData.code,
+          location: formData.location,
+          capacity_km: formData.capacity_km,
+          schedule: buildSchedule(),
+        }),
       });
 
       fetchWarehouses(); // Refresh data
@@ -98,6 +108,14 @@ function MyWarehouses() {
   useEffect(() => {
     fetchWarehouses();
   }, []);
+
+  const buildSchedule = () => {
+    if (formData.shifts === 1) {
+      return `${formData.start1} - ${formData.end1}`;
+    } else {
+      return `${formData.start1} - ${formData.end1}, ${formData.start2} - ${formData.end2}`;
+    }
+  };
 
   return (
     <DashboardLayout>
@@ -161,13 +179,81 @@ function MyWarehouses() {
                     />
                   </Grid>
                   <Grid item xs={12} sm={6} md={6} lg={6} xl={6}>
-                    <SoftInput
-                      placeholder="Horaire de travail"
-                      name="schedule"
-                      value={formData.schedule}
-                      onChange={handleInputChange}
-                    />
+                    <select
+                      name="shifts"
+                      value={formData.shifts}
+                      onChange={(e) => setFormData({ ...formData, shifts: Number(e.target.value) })}
+                      style={{ width: "100%", height: "40px", borderRadius: "8px", padding: "5px" }}
+                    >
+                      <option value={1}>1 Poste</option>
+                      <option value={2}>2 Postes</option>
+                    </select>
                   </Grid>
+                  {formData.shifts >= 1 && (
+                    <>
+                      <Grid item xs={12} sm={3} md={2} lg={2} xl={2}>
+                        <SoftTypography>
+                          <label style={{ fontSize: "14px", fontWeight: "bold" }}>Ouverture</label>
+                        </SoftTypography>
+                      </Grid>
+                      <Grid item xs={12} sm={9} md={4} lg={4} xl={4}>
+                        <SoftInput
+                          type="time"
+                          label="Heure d'ouverture"
+                          name="start1"
+                          value={formData.start1}
+                          onChange={handleInputChange}
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={3} md={2} lg={2} xl={2}>
+                        <SoftTypography>
+                          <label style={{ fontSize: "14px", fontWeight: "bold" }}>Fermeture</label>
+                        </SoftTypography>
+                      </Grid>
+                      <Grid item xs={12} sm={9} md={4} lg={4} xl={4}>
+                        <SoftInput
+                          type="time"
+                          label="Heure de fermeture"
+                          name="end1"
+                          value={formData.end1}
+                          onChange={handleInputChange}
+                        />
+                      </Grid>
+                    </>
+                  )}
+
+                  {formData.shifts === 2 && (
+                    <>
+                      <Grid item xs={12} sm={3} md={2} lg={2} xl={2}>
+                        <SoftTypography>
+                          <label style={{ fontSize: "14px", fontWeight: "bold" }}>Ouverture</label>
+                        </SoftTypography>
+                      </Grid>
+                      <Grid item xs={12} sm={9} md={4} lg={4} xl={4}>
+                        <SoftInput
+                          type="time"
+                          label="Heure d'ouverture (Shift 2)"
+                          name="start2"
+                          value={formData.start2}
+                          onChange={handleInputChange}
+                        />
+                      </Grid>
+                      <Grid item xs={12} sm={3} md={2} lg={2} xl={2}>
+                        <SoftTypography>
+                          <label style={{ fontSize: "14px", fontWeight: "bold" }}>Fermeture</label>
+                        </SoftTypography>
+                      </Grid>
+                      <Grid item xs={12} sm={9} md={4} lg={4} xl={4}>
+                        <SoftInput
+                          type="time"
+                          label="Heure de fermeture (Shift 2)"
+                          name="end2"
+                          value={formData.end2}
+                          onChange={handleInputChange}
+                        />
+                      </Grid>
+                    </>
+                  )}
                 </Grid>
                 <Grid
                   container
