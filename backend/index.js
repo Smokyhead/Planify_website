@@ -354,19 +354,51 @@ app.delete("/api/delete-warehouse/:id", (req, res) => {
 // **********stores********** //
 
 app.get("/api/get-stores", (req, res) => {
-  const query = `
+  const includeInactive = req.query.include_inactive === 'true';
+
+  let query = `
     SELECT s.*, c.contract_type, c.frequency_per_week, c.active_status as contract_active
     FROM stores s
     LEFT JOIN contracts c ON s.id = c.store_id AND c.active_status = TRUE
-    WHERE s.active_status = TRUE
-    ORDER BY s.code
   `;
+
+  if (!includeInactive) {
+    query += ` WHERE s.active_status = TRUE OR s.active_status IS NULL`;
+  }
+
+  query += ` ORDER BY s.active_status DESC, s.code`;
+
   db.query(query, (err, results) => {
     if (err) {
       console.error("Error fetching stores:", err);
       return res.status(500).json({ error: "Failed to fetch stores" });
     }
     res.json(results);
+  });
+});
+
+// Get single store by ID
+app.get("/api/get-store/:id", (req, res) => {
+  const storeId = req.params.id;
+
+  const query = `
+    SELECT s.*, c.contract_type, c.frequency_per_week, c.active_status as contract_active
+    FROM stores s
+    LEFT JOIN contracts c ON s.id = c.store_id AND c.active_status = TRUE
+    WHERE s.id = ?
+  `;
+
+  db.query(query, [storeId], (err, results) => {
+    if (err) {
+      console.error("Error fetching store:", err);
+      return res.status(500).json({ error: "Failed to fetch store" });
+    }
+
+    if (results.length === 0) {
+      return res.status(404).json({ error: "Store not found" });
+    }
+
+    res.json(results[0]);
   });
 });
 
@@ -378,8 +410,8 @@ app.post("/api/add-store", (req, res) => {
   }
 
   const query = `
-    INSERT INTO stores (code, name, address, gps_lat, gps_lng, opening_hours, closing_hours, unloading_time_minutes)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO stores (code, name, address, gps_lat, gps_lng, opening_hours, closing_hours, unloading_time_minutes, active_status)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, TRUE)
   `;
 
   db.query(query, [code, name, address, gps_lat, gps_lng, opening_hours || '08:00:00', closing_hours || '21:00:00', unloading_time_minutes || 30], (err, result) => {
@@ -391,6 +423,67 @@ app.post("/api/add-store", (req, res) => {
     res.status(201).json({
       message: "Store added successfully",
       id: result.insertId,
+    });
+  });
+});
+
+// Update store
+app.put("/api/update-store/:id", (req, res) => {
+  const storeId = req.params.id;
+  const { code, name, address, gps_lat, gps_lng, opening_hours, closing_hours, unloading_time_minutes, active_status } = req.body;
+
+  if (!code || !name || !address || !gps_lat || !gps_lng) {
+    return res.status(400).json({ error: "Missing required fields" });
+  }
+
+  const query = `
+    UPDATE stores
+    SET code = ?, name = ?, address = ?, gps_lat = ?, gps_lng = ?, opening_hours = ?, closing_hours = ?, unloading_time_minutes = ?, active_status = ?
+    WHERE id = ?
+  `;
+
+  const activeStatusValue = active_status !== undefined ? active_status : true;
+
+  db.query(query, [code, name, address, gps_lat, gps_lng, opening_hours, closing_hours, unloading_time_minutes, activeStatusValue, storeId], (err, result) => {
+    if (err) {
+      console.error("Database update error:", err);
+      return res.status(500).json({ error: "Failed to update store" });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "Store not found" });
+    }
+
+    res.json({
+      message: "Store updated successfully",
+      id: storeId,
+    });
+  });
+});
+
+// Delete store (soft delete by setting active_status to false)
+app.delete("/api/delete-store/:id", (req, res) => {
+  const storeId = req.params.id;
+
+  const query = `
+    UPDATE stores
+    SET active_status = FALSE
+    WHERE id = ?
+  `;
+
+  db.query(query, [storeId], (err, result) => {
+    if (err) {
+      console.error("Database delete error:", err);
+      return res.status(500).json({ error: "Failed to delete store" });
+    }
+
+    if (result.affectedRows === 0) {
+      return res.status(404).json({ error: "Store not found" });
+    }
+
+    res.json({
+      message: "Store deleted successfully",
+      id: storeId,
     });
   });
 });
