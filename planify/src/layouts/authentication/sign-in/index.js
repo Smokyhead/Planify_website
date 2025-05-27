@@ -1,14 +1,15 @@
 // react-router-dom components
 import * as React from "react";
-import { Box } from "@mui/material";
+import { Box, Alert } from "@mui/material";
 import SoftBox from "components/SoftBox";
 import FormLabel from "@mui/material/FormLabel";
 import FormControl from "@mui/material/FormControl";
 import SoftButton from "components/SoftButton";
 import SoftTypography from "components/SoftTypography";
 import SoftInput from "components/SoftInput";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../../context/AuthContext";
 
 // Authentication layout components
 import CoverLayout from "layouts/authentication/components/CoverLayout";
@@ -16,8 +17,11 @@ import CircularProgress from "@mui/material/CircularProgress";
 
 function SignIn() {
   const [isLoading, setIsLoading] = React.useState(false);
+  const [error, setError] = React.useState("");
 
   const navigate = useNavigate();
+  const location = useLocation();
+  const { login } = useAuth();
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
   const [passwordError, setPasswordError] = React.useState(false);
@@ -29,37 +33,30 @@ function SignIn() {
     if (!validateInputs()) return;
 
     setIsLoading(true);
+    setError("");
 
     const data = new FormData(event.currentTarget);
     const email = data.get("email");
     const password = data.get("password");
 
-    const startTime = Date.now();
-
     try {
-      const response = await fetch("http://localhost:3001/api/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+      console.log("Attempting login with:", email);
+      const result = await login(email, password);
+      console.log("Login result:", result);
 
-      const timeElapsed = Date.now() - startTime;
-      const waitTime = Math.max(3000 - timeElapsed, 0); // wait to complete 3s
-
-      setTimeout(async () => {
-        if (response.ok) {
-          const result = await response.json();
-          console.log("Login successful:", result);
-          navigate("/tableau-de-bord", { state: { user: result.user } });
-        } else {
-          console.error("Login failed:", await response.text());
-          alert("Echec de la connexion. Veuillez vérifier vos identifiants.");
-        }
-
-        setIsLoading(false);
-      }, waitTime);
+      if (result.success) {
+        // Redirect to the page they were trying to visit or dashboard
+        const from = location.state?.from?.pathname || "/tableau-de-bord";
+        console.log("Redirecting to:", from);
+        navigate(from, { replace: true });
+      } else {
+        console.log("Login failed:", result.error);
+        setError(result.error || "Login failed. Please check your credentials.");
+      }
     } catch (err) {
       console.error("Login error:", err);
+      setError("An unexpected error occurred. Please try again.");
+    } finally {
       setIsLoading(false);
     }
   };
@@ -115,6 +112,11 @@ function SignIn() {
         </Box>
       )}
       <SoftBox>
+        {error && (
+          <Alert severity="error" sx={{ mb: 2 }}>
+            {error}
+          </Alert>
+        )}
         <form onSubmit={handleSubmit}>
           <FormControl fullWidth>
             <SoftBox mt={1}>

@@ -13,6 +13,8 @@ import theme from "assets/theme";
 import dashboardRoutes from "dashboardRoutes";
 import routes from "routes";
 import { useSoftUIController, setMiniSidenav, setOpenConfigurator } from "context";
+import { AuthProvider } from "context/AuthContext";
+import ProtectedRoute from "components/ProtectedRoute";
 
 // Images
 import brand from "assets/images/logo-ct.png";
@@ -60,7 +62,12 @@ export default function App() {
       }
 
       if (route.route) {
-        return <Route exact path={route.route} element={route.component} key={route.key} />;
+        // Protect all routes except authentication routes
+        const isAuthRoute = route.route.includes('/authentication/');
+        const element = isAuthRoute ? route.component : (
+          <ProtectedRoute>{route.component}</ProtectedRoute>
+        );
+        return <Route exact path={route.route} element={element} key={route.key} />;
       }
 
       return null;
@@ -71,24 +78,26 @@ export default function App() {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <CssBaseline />
-      {getRouteKeys().includes(layout) && (
-        <>
-          <Sidenav
-            color={sidenavColor}
-            brand={brand}
-            brandName="Planify"
-            routes={dashboardRoutes}
-            onMouseEnter={handleOnMouseEnter}
-            onMouseLeave={handleOnMouseLeave}
-          />
-        </>
-      )}
-      <Routes>
-        {getRoutes(routes)}
-        <Route path="*" element={<Navigate to="/authentication/sign-in" />} />
-      </Routes>
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider theme={theme}>
+        <CssBaseline />
+        {getRouteKeys().includes(layout) && (
+          <>
+            <Sidenav
+              color={sidenavColor}
+              brand={brand}
+              brandName="Planify"
+              routes={dashboardRoutes}
+              onMouseEnter={handleOnMouseEnter}
+              onMouseLeave={handleOnMouseLeave}
+            />
+          </>
+        )}
+        <Routes>
+          {getRoutes(routes)}
+          <Route path="*" element={<Navigate to="/authentication/sign-in" />} />
+        </Routes>
+      </ThemeProvider>
+    </AuthProvider>
   );
 }

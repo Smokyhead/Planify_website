@@ -1,0 +1,12 @@
+Code,Store,Contract,Mon,DELAY_Mon,Tue,DELAY_Tue,Wed,DELAY_Wed,Thu,DELAY_Thu,Fri,DELAY_Fri,Sat,DELAY_Sat,Sun,DELAY_Sun,Warehouse,Frequency
+"ST001","Store Paris Centre","COMEAU","1","0","0","0","1","0","0","0","1","0","0","0","0","0","Paris, France","3"
+"ST002","Store Lyon Bellecour","COMEAU","0","0","0","0","0","0","0","0","1","0","1","0","1","0","Paris, France","3"
+"ST003","Store Marseille Vieux Port","COMDET","1","1","0","0","0","0","0","0","0","0","0","0","0","0","Paris, France","1"
+"ST005","Store Nice Promenade","COMDET","1","1","0","0","0","0","0","0","0","0","0","0","0","0","Paris, France","1"
+"ST007","Store Nice Promenade","COMDET","1","1","0","0","0","0","0","0","0","0","0","0","0","0","Paris, France","1"
+"ST009","Store Bordeaux Gambetta","COMDET","1","0","0","0","0","0","0","0","0","0","0","0","0","0","Paris, France","1"
+"ST010","Store Lille Grand Place","COMEAU","0","0","1","0","1","0","0","0","1","0","0","0","0","0","Paris, France","3"
+"ST011","Store Nantes Commerce","COMDET","0","0","1","0","0","0","0","0","0","0","0","0","0","0","Paris, France","1"
+"ST013","Store Rennes République","COMDET","0","0","0","0","1","0","0","0","0","0","0","0","0","0","Paris, France","1"
+"ST014","Store Reims Drouet","COMEAU","0","0","0","0","0","0","1","0","0","0","1","0","1","0","Paris, France","3"
+"ST015","Store Saint-Étienne Hôtel de Ville","COMDET","0","0","0","0","0","0","1","0","0","0","0","0","0","0","Paris, France","1"
