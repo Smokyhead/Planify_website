@@ -1,14 +1,29 @@
 {
-  "name": "backend",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "planify-backend",
+  "version": "2.0.0",
+  "description": "Planify Delivery Planning System - Backend API",
+  "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node server.js",
+    "dev": "node server.js",
+    "legacy": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "echo \"Linting not configured\"",
+    "check-health": "curl -f http://localhost:3001/health || exit 1"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "delivery",
+    "planning",
+    "optimization",
+    "logistics",
+    "express",
+    "mysql"
+  ],
+  "author": "Planify Team",
   "license": "ISC",
-  "description": "",
+  "engines": {
+    "node": ">=14.0.0"
+  },
   "dependencies": {
     "bcrypt": "^6.0.0",
     "cors": "^2.8.5",
@@ -16,5 +31,10 @@
     "jsonwebtoken": "^9.0.2",
     "mysql": "^2.18.1",
     "mysql2": "^3.14.0"
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "."
   }
 }
